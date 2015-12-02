@@ -84,7 +84,7 @@ describe Textris::Message do
           :from    => 'X',
           :to      => '+48 111 222 333')
 
-        expect(message.content).to eq('a b. c')
+        expect(message.content).to eq("a\nb. \n\n c")
       end
 
       it 'strips leading and trailing whitespace' do

@@ -16,7 +16,7 @@ module Textris
         body    = apply_template body_template,    template_vars
 
         ::Textris::Delivery::Mail::Mailer.notify(
-          from, to, subject, body).deliver
+          from, to, subject, body).deliver_now
       end
 
       private

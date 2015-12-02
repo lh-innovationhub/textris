@@ -38,7 +38,7 @@ describe Textris::Delivery::Mail do
         @message = message
       end
 
-      def deliver
+      def deliver_now
         self.class.deliver(@message)
       end
     end
