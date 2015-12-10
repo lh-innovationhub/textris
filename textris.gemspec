@@ -5,7 +5,7 @@ require 'textris/version'
 Gem::Specification.new do |spec|
   spec.name     = 'textris'
   spec.version  = Textris::VERSION
-  spec.authors  = ['Karol Słuszniak']
+  spec.authors  = ['Karol Sluszniak']
   spec.email    = 'k.sluszniak@visuality.pl'
   spec.homepage = 'http://github.com/visualitypl/textris'
   spec.license  = 'MIT'
