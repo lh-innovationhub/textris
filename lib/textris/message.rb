@@ -10,6 +10,7 @@ module Textris
       @texter = options[:texter]
       @action = options[:action]
       @args   = options[:args]
+      @after_delivery = options[:after_delivery]
     end
 
     def deliver
@@ -18,6 +19,7 @@ module Textris
         delivery.new(self).deliver_to_all
       end
 
+      execute_after_delivery
       self
     end
 
@@ -107,6 +109,10 @@ module Textris
       content = content.strip
 
       content
+    end
+
+    def execute_after_delivery
+      @after_delivery.call(self) if @after_delivery
     end
   end
 end

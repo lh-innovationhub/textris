@@ -46,7 +46,7 @@ module Textris
     def render_content
       set_instance_variables_for_rendering
 
-      render(:template => template_name, :formats => ['text'], :locale => @locale)
+      render(template: template_name, formats: ['text'], locale: @locale)
     end
 
     protected
@@ -56,13 +56,18 @@ module Textris
 
       options = self.class.with_defaults(options)
       options.merge!(
-        :texter   => self.class,
-        :action   => @action,
-        :args     => @args,
-        :content  => options[:body].is_a?(String) ? options[:body] : nil,
-        :renderer => self)
+        :texter         => self.class,
+        :action         => @action,
+        :args           => @args,
+        :content        => options[:body].is_a?(String) ? options[:body] : nil,
+        :renderer       => self,
+        :after_delivery => after_delivery_block)
 
       ::Textris::Message.new(options)
+    end
+
+    def after_delivery_block
+      nil
     end
 
     private

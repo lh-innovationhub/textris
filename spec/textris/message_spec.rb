@@ -172,6 +172,11 @@ describe Textris::Message do
       class YDelivery < Textris::Delivery::Base
         def deliver(to); end
       end
+
+      class AfterDelivery
+        def initialize(message); end
+        def execute; end
+      end
     end
 
     it 'invokes delivery classes properly' do
@@ -181,10 +186,12 @@ describe Textris::Message do
       message = Textris::Message.new(
         :content => 'X',
         :from    => 'X',
-        :to      => '+48 111 222 333')
+        :to      => '+48 111 222 333',
+        :after_delivery => Proc.new { |m| AfterDelivery.new(m).execute })
 
       expect_any_instance_of(XDelivery).to receive(:deliver_to_all)
       expect_any_instance_of(YDelivery).to receive(:deliver_to_all)
+      expect_any_instance_of(AfterDelivery).to receive(:execute)
 
       message.deliver
     end
